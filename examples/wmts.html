@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>WMTS example - Leaflet</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js" integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log==" crossorigin=""></script>
+	
+	<script src="https://unpkg.com/proj4leaflet@1.0.2/lib/proj4-compressed.js"></script>
+	<script src="https://unpkg.com/proj4leaflet@1.0.2/src/proj4leaflet.js"></script>
+    <script src="../src/TileLayer.ProjWMTS.js"></script>
+
+	<style>
+		#map {
+			width: 600px;
+			height: 400px;
+		}
+		body{
+			background-color: #333;
+			color: rgb(0, 0, 0);
+            font-weight: bold;
+            text-shadow: 0 0 4px white;
+            font-size: smaller;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+<div id='map'></div>
+Opacity:<input id="iOpacity" type="number" value="80" min="0" max="100" step="10"/>
+<script type="text/javascript">
+	proj4.defs('EPSG:2180', '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs');
+	var crs = new L.Proj.CRS(
+			"EPSG:2180",
+			"+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs",
+			{});
+	var map = L.map('map', {
+        center: [52.16571296852608, 21.01755380630493],
+		zoom: 7
+	});
+
+	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                    maxZoom: 20,
+                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                        'Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
+                    id: 'mapbox.streets'
+                }).addTo(map);
+	
+	var wmts = L.tileLayer.projwmts('https://mapy.geoportal.gov.pl/wss/service/WMTS/guest/wmts/G2_MOBILE_500', {
+		format: 'image/png',
+		tileSize: 512,
+		version: '1.0.0',
+		transparent: true,
+        crs: crs,
+        origin:[850000.0,100000.0],
+        scales:[30238155.714285716,15119077.857142858,7559538.928571429,3779769.4642857146,1889884.7321428573,944942.3660714286,472471.1830357143,236235.59151785716,94494.23660714286,47247.11830357143,23623.559151785714,9449.423660714287,4724.711830357143,1889.8847321428573,944.9423660714286,472.4711830357143],
+        tilematrixSet: 'EPSG:2180',
+        opacity:1.0,
+        crossOrigin:true,
+        minZoom:5
+    }).addTo(map);
+    document.getElementById('iOpacity').addEventListener('change', function(event){wmts.setOpacity(parseInt(event.target.value) / 100.0)})
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "leaflet.projwmts",
+  "version": "1.0.0",
+  "description": "Leaflet wmts layer with projection",
+  "main": "src/TileLayer.ProjWMS.js",
+  "scripts": {
+    "serve": "live-server --port=8084"
+  },
+  "keywords": [
+    "Leaflet",
+    "geoportal.gov.pl"
+  ],
+  "author": "GISPartner",
+  "license": "MIT",
+  "dependencies": {
+    "leaflet": "^1.2.0",
+    "proj4leaflet": "^1.0.2"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sequence": "^0.4.6",
+    "gulp-uglify": "^3.0.0",
+    "live-server": "^1.2.0",
+    "pump": "^1.0.2"
+  }
+}

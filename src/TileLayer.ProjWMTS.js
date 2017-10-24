@@ -1,19 +1,40 @@
 L.TileLayer.ProjWMTS = L.TileLayer.extend({
     defaultWMTSParams: {
+        // @option service: String = 'WMTS'
+        // Name of service query string parameter
         service: 'WMTS',
+        // @option request: String = 'GetTile'
+        // Name of request query string parameter
         request: 'GetTile',
-        getcapabilities: 'GetCapabilities',
+        // @option version: String = '1.0.0'
+        // WMTS version passed as query string parameter
         version: '1.0.0',
         layer: '',
         style: '',
+        // @option tileMatrixSet: String = ''
+        // **(requred)**  Name of tile matrix set from WMTS
         tileMatrixSet: '',
+        // @option format: String = 'image/jpeg'
+        // format of WMTS tiles
         format: 'image/jpeg'
     },
 
     options:{
+        // @option crs: L.Proj.CRS = null
+        // **(requred)**  CRS definition that is the same as in WMTS:
+        //      var crs = new L.Proj.CRS(
+		//	        "EPSG:2180",
+		//	        "+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs",
+        //	        {}
+        //      );
         crs: null,
-        uppercase: false,
+        // @option tileSize: Number = 512
+        // Size of tile in WMTS service
         tileSize: 512,
+        // @option skewPartSize: Number = 32
+        // Size in pixel of subpart that every tile is divided into. 
+        // All projection calculations are computed for that subPart. 
+        // If subPart is smaller then there is more computation needed for each tile and it takes more time 
         skewPartSize: 32
     },
 

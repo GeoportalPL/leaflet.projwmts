@@ -26,7 +26,7 @@ examples/wmts_ortho.html
 In examples EPSG:2180 is used, but it should work with diffrent CRS.
 
 To properly configure wmts projection you have to define crs first like:
-```
+```javascript
 var crs = new L.Proj.CRS(
     "EPSG:2180",
     "+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 units=m +no_defs",
@@ -35,7 +35,7 @@ var crs = new L.Proj.CRS(
 ```
 then you can pass it to wmts layer, you have to copy tileSize, origin, scales and tilematrixSet values from service capabilities (url + '?service=WMTS&request=GetCapabilities')
 :
-```
+```javascript
 L.tileLayer.projwmts('https://mapy.geoportal.gov.pl/wss/service/WMTS/guest/wmts/G2_MOBILE_500', {
         crs: crs,
 		format: 'image/png',
@@ -50,7 +50,7 @@ L.tileLayer.projwmts('https://mapy.geoportal.gov.pl/wss/service/WMTS/guest/wmts/
         minZoom:5
     })
 ```
-If you are using map service from diffrent domain then remember to set 
-```
+If you are using map service from diffrent domain then remember to set in layer options
+```javascript
 crossOrigin: true
 ```

@@ -102,10 +102,10 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
         var nePoint = nwPoint.add(new L.Point(tileSize, 0));
         var swPoint = nwPoint.add(new L.Point(0, tileSize));
         
-        var nw = this._crs.project(map.unproject(nwPoint, coords.z));
-        var se = this._crs.project(map.unproject(sePoint, coords.z));
-        var ne = this._crs.project(map.unproject(nePoint, coords.z));
-        var sw = this._crs.project(map.unproject(swPoint, coords.z));
+        var nw = this._crs.project(this._map.unproject(nwPoint, coords.z));
+        var se = this._crs.project(this._map.unproject(sePoint, coords.z));
+        var ne = this._crs.project(this._map.unproject(nePoint, coords.z));
+        var sw = this._crs.project(this._map.unproject(swPoint, coords.z));
 
         var X0 = this.wmtsParams.origin[1];
         var Y0 = this.wmtsParams.origin[0];
@@ -131,7 +131,7 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
         result.pixelSize = [WMTSResolution, WMTSResolution]; 
         result.shift = [tilecolnw * WMTSTileLength + X0, Y0 - tilerownw * WMTSTileLength];
         result.xyz = "" + coords.x + coords.y + coords.z;
-        var bbox3857 = [this._map.options.crs.project(map.unproject(nwPoint, coords.z)),this._map.options.crs.project(map.unproject(sePoint, coords.z))];
+        var bbox3857 = [this._map.options.crs.project(this._map.unproject(nwPoint, coords.z)),this._map.options.crs.project(this._map.unproject(sePoint, coords.z))];
         result.bbox3857PixelSize = [(bbox3857[1].x - bbox3857[0].x) / tileSize, (bbox3857[0].y - bbox3857[1].y) / tileSize]
         result.bbox3857Shift = [bbox3857[0].x, bbox3857[1].y];
         return result;

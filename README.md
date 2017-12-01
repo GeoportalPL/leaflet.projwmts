@@ -1,5 +1,5 @@
 leaflet.projwmts 
-========!
+========
 
 Leaflet wmts layer with projection
 
@@ -17,7 +17,7 @@ npm serve
 ```
 if everything is ok, new browser windows should be opened with directory listing, then go to
 ```
-examples/wmts.html
+eexamples/wmts.html
 ```
 or
 ```

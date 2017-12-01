@@ -104,20 +104,9 @@
             minZoom: 5
         }).addTo(map1);
 
-        var tileUrl4 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}.png';
-
-
-
-        tilelayer4 = new L.TileLayer(tileUrl4, {
-            maxZoom: 12,
-            minZoom: 0,
-            tileSize: 256,
-            attribution: 'Map data © <a href="http://geoportal.gov.pl">Geoportal</a> contributors'
-        })
-
+       
 
         var baseMaps = {
-            "OSM": tilelayer4,
             "BDOO": bdoo,
             "BDOT500": bdot500,
             "Orto": orto,

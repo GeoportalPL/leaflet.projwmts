@@ -99,7 +99,7 @@
             "BDOT500": bdot500,
             "Orto": orto,
         };
-
+         L.control.layers(baseMaps).addTo(map1);
 
         L.control.g2search({
             hideResultOnSelect: true
@@ -107,7 +107,7 @@
 
         L.control.scale().addTo(map1);
 
-        L.control.layers(baseMaps).addTo(map1);
+       
 
         document.getElementById('iOpacity').addEventListener('change', function(event) {
             orto.setOpacity(parseInt(event.target.value) / 100.0)

@@ -42,7 +42,7 @@
 <body>
 
     <div id='map1'></div>
-    Opacity:<input id="iOpacity" type="number" value="80" min="0" max="100" step="10" />
+    Opacity:<input id="iOpacity" type="number" value="50" min="0" max="100" step="10" />
     <script type="text/javascript">
         proj4.defs('EPSG:2180', '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs');
         var crs = new L.Proj.CRS(
@@ -97,7 +97,7 @@
         L.control.scale().addTo(map1);
 
         document.getElementById('iOpacity').addEventListener('change', function(event) {
-            orto.setOpacity(parseInt(event.target.value) / 50.0)
+            orto.setOpacity(parseInt(event.target.value) / 100.0)
         })
 
     </script>

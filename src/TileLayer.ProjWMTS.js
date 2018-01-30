@@ -190,9 +190,11 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
         var finalCanvas = this._createCanvas(tileSize.x, tileSize.y);
         masterTile._finalCanvas = finalCanvas;
 
-        var imgFinal = document.createElement('img');
-        masterTile._finalImg = imgFinal;
-        return imgFinal;
+        var finalImg = document.createElement('img');
+        finalImg.alt = '';
+        finalImg.setAttribute('role', 'presentation');
+        masterTile._finalImg = finalImg;
+        return finalImg;
     },
     _findNeareastScale: function(scale){
         var result = 0;

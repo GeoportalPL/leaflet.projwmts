@@ -189,7 +189,10 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
       
         var finalCanvas = this._createCanvas(tileSize.x, tileSize.y);
         masterTile._finalCanvas = finalCanvas;
-        return finalCanvas;
+
+        var imgFinal = document.createElement('img');
+        masterTile._finalImg = imgFinal;
+        return imgFinal;
     },
     _findNeareastScale: function(scale){
         var result = 0;
@@ -221,6 +224,7 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
 
             //console.time('c' + tile.masterTile.tilesInfo.xyz);
             this._warpBySkew(tile.masterTile, tile.masterTile._finalCanvas);
+            tile.masterTile._finalImg.src = tile.masterTile._finalCanvas.toDataURL();
             //this._warpPixelByPixel(tile.masterTile, tile.masterTile._finalCanvas);
             //console.timeEnd('c' + tile.masterTile.tilesInfo.xyz);
     

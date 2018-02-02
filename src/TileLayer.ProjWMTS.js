@@ -1,4 +1,4 @@
-L.TileLayer.ProjWMTS = L.TileLayer.extend({
+L.TileLayer.ProjWMTS = L.GridLayer.extend({
     defaultWMTSParams: {
         // @option service: String = 'WMTS'
         // Name of service query string parameter
@@ -35,7 +35,7 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
         // Size in pixel of subpart that every tile is divided into. 
         // All projection calculations are computed for that subPart. 
         // If subPart is smaller then there is more computation needed for each tile and it takes more time 
-        skewPartSize: 32
+        skewPartSize: 64
     },
 
     initialize: function(url, options){
@@ -189,12 +189,7 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
       
         var finalCanvas = this._createCanvas(tileSize.x, tileSize.y);
         masterTile._finalCanvas = finalCanvas;
-
-        var finalImg = document.createElement('img');
-        finalImg.alt = '';
-        finalImg.setAttribute('role', 'presentation');
-        masterTile._finalImg = finalImg;
-        return finalImg;
+        return finalCanvas;
     },
     _findNeareastScale: function(scale){
         var result = 0;
@@ -226,7 +221,6 @@ L.TileLayer.ProjWMTS = L.TileLayer.extend({
 
             //console.time('c' + tile.masterTile.tilesInfo.xyz);
             this._warpBySkew(tile.masterTile, tile.masterTile._finalCanvas);
-            tile.masterTile._finalImg.src = tile.masterTile._finalCanvas.toDataURL();
             //this._warpPixelByPixel(tile.masterTile, tile.masterTile._finalCanvas);
             //console.timeEnd('c' + tile.masterTile.tilesInfo.xyz);
     

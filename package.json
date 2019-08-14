@@ -2,7 +2,7 @@
   "name": "leaflet.projwmts",
   "version": "1.0.0",
   "description": "Leaflet wmts layer with projection",
-  "main": "src/TileLayer.ProjWMS.js",
+  "main": "src/TileLayer.ProjWMTS.js",
   "scripts": {
     "serve": "live-server --port=8084"
   },
